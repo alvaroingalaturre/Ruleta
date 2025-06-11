@@ -14,7 +14,7 @@
 <body>
 
 <h1>Ruleta Principal</h1>
-<button onclick="spin('main')">Girar Ruleta Principal</button>
+<button onclick="spin('main')">Girar Ruleta</button>
 <div id="result"></div>
 
 <div id="extraButtons" style="margin-top: 20px;"></div>
@@ -57,7 +57,7 @@
         showExtraButton(subRouletteMap[choice]);
       }
     } else {
-      document.getElementById('subresult').innerText = `Subraza: ${choice}`;
+      document.getElementById('subresult').innerText = `${choice}`;
 
       // Si estamos girando la ruleta de mago y sale "Mago", mostramos botón para submago
       if (type === "Mago" && choice === "Mago") {
