@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruleta de Razas</title>
+  <style>
+    body { font-family:arial; text-align: center; padding: 30px; }
+    button { padding: 10px 20px; font-size: 18px; }
+    #result { margin-top: 20px; font-size: 24px; font-weight: bold; }
+  </style>
+</head>
+<body>
+ 
+<h1>Ruleta Principal</h1>
+<button onclick="spin('main')">Girar Ruleta</button>
+<div id="result"></div>
+ 
+<script>
+  const roulettes = {
+    main: [
+      "Humano", "Druida", "Orco", "Cíclope", "Semidios", "Demonio", "Draconiano", "Dríada", "Enano", "Elfo",
+      "No muerto", "Gigante", "Gnomo", "Goblin", "Gremlin", "Semi-gigante", "Medio", "Imp", "Kappa",
+      "Hombre-animal", "Mago", "Ogro", "Troll", "Vampiro", "Troglodita", "Lich", "Leprechaun", "Gorgona",
+      "Pixie", "Djinn/Jinn/Genio", "Elemental"
+    ],
+    No_muerto: [
+        "Zombie", "Esqueleto", "Espíritu", "Ghoul"
+    ],
+    Hombre_animal: [
+      "Hombre lobo", "Hombre lagarto", "Hombre pez", "Harpía", "Tritón/Sirena", "Nekomimi",
+      "Minotauro", "Centauro", "Fauno", "Sátiro"
+    ],
+    Elemental: [
+      "Fuego", "Agua", "Viento", "Tierra", "Electricidad", "Hielo", "Planta", "Luz", "Oscuridad"
+    ],
+    Mago: ["Mago", "Brujo", "Hechicero", "Nigromante", "Chamán", "Clérigo"],
+    submago: [
+      "Piromante", "Hidromante", "Heliomamte", "Geomante", "Electromante",
+      "Criomante", "Herbomante", "Fotomante", "Nictomante"
+    ]
+  };
+ 
+  function spin(type) {
+    const options = roulettes[type];
+    const choice = options[Math.floor(Math.random() * options.length)];
+ 
+    document.getElementById('result').innerText = `${choice}`;
+ 
+    // Lógica de encadenamiento
+    if (type === 'main') {
+      if (choice === "No muerto") {
+        setTimeout((2)> spin('No muerto'), 1000);
+      } else if (choice === "Hombre-animal") {
+        setTimeout((2)> spin('Hombre-animal'), 1000);
+      } else if (choice === "Elemental") {
+        setTimeout((2)> spin('Elemental'), 1000);
+      } else if (choice === "Mago") {
+        setTimeout((2)> spin('Mago'), 1000);
+      }
+    }
+ 
+    if (type === 'Mago' && choice === "Mago") {
+      setTimeout(() => spin('submago'), 1000);
+    }
+  }
+</script>
+ 
+</body>
+</html>
