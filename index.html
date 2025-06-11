@@ -35,6 +35,14 @@
     submago: ["Piromante", "Hidromante", "Heliomamte", "Geomante", "Electromante", "Criomante", "Herbomante", "Fotomante", "Nictomante"]
   };
 
+  // Mapeo de nombre visible a clave de ruleta secundaria
+  const subRouletteMap = {
+    "No muerto": "No_muerto",
+    "Hombre-animal": "Hombre_animal",
+    "Elemental": "Elemental",
+    "Mago": "Mago"
+  };
+
   function spin(type) {
     const options = roulettes[type];
     const choice = options[Math.floor(Math.random() * options.length)];
@@ -42,26 +50,19 @@
     if (type === 'main') {
       document.getElementById('result').innerText = `Principal: ${choice}`;
       document.getElementById('subresult').innerText = "";
-      document.getElementById('extraButtons').innerHTML = ""; // Limpiar botones anteriores
+      document.getElementById('extraButtons').innerHTML = "";
 
-      // Mostrar botón según la selección
-      if (choice === "No muerto") {
-        showExtraButton('No_muerto');
-      } else if (choice === "Hombre-animal") {
-        showExtraButton('Hombre_animal');
-      } else if (choice === "Elemental") {
-        showExtraButton('Elemental');
-      } else if (choice === "Mago") {
-        showExtraButton('Mago');
+      // Mostrar botón si hay ruleta secundaria
+      if (subRouletteMap[choice]) {
+        showExtraButton(subRouletteMap[choice]);
       }
     } else {
       document.getElementById('subresult').innerText = `Subraza: ${choice}`;
-      // Si es submago, no se necesita botón extra
-    }
 
-    // Giro especial de submago si se gira Mago y sale "Mago"
-    if (type === 'Mago' && choice === "Mago") {
-      showExtraButton('submago');
+      // Si estamos girando la ruleta de mago y sale "Mago", mostramos botón para submago
+      if (type === "Mago" && choice === "Mago") {
+        showExtraButton("submago");
+      }
     }
   }
 
