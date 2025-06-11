@@ -46,24 +46,38 @@
     const options = roulettes[type];
     const choice = options[Math.floor(Math.random() * options.length)];
  
-    document.getElementById('result').innerText = `${choice}`;
- 
-    // Lógica de encadenamiento
-    if (type === 'main') {
+  if (type === 'main') {
+      document.getElementById('result').innerText = `Principal: ${choice}`;
+      document.getElementById('subresult').innerText = "";
+      document.getElementById('extraButtons').innerHTML = ""; // Limpiar botones anteriores
+
+      // Mostrar botón según la selección
       if (choice === "No muerto") {
-        setTimeout((0.1)> spin('No_muerto'), 1000);
+        showExtraButton('No_muerto');
       } else if (choice === "Hombre-animal") {
-        setTimeout((0.1)> spin('Hombre_animal'), 1000);
+        showExtraButton('Hombre_animal');
       } else if (choice === "Elemental") {
-        setTimeout((0.1)> spin('Elemental'), 1000);
+        showExtraButton('Elemental');
       } else if (choice === "Mago") {
-        setTimeout((0.1)> spin('Mago'), 1000);
+        showExtraButton('Mago');
       }
+    } else {
+      document.getElementById('subresult').innerText = `Subraza: ${choice}`;
+      // Si es submago, no se necesita botón extra
     }
- 
+
+    // Giro especial de submago si se gira Mago y sale "Mago"
     if (type === 'Mago' && choice === "Mago") {
-      setTimeout((0.1) => spin('submago'), 1000);
+      showExtraButton('submago');
     }
+  }
+
+  function showExtraButton(type) {
+    const container = document.getElementById('extraButtons');
+    const btn = document.createElement('button');
+    btn.innerText = `Girar ${type.replace(/_/g, " ")}`;
+    btn.onclick = () => spin(type);
+    container.appendChild(btn);
   }
 </script>
  
