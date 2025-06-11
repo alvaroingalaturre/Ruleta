@@ -51,18 +51,18 @@
     // Lógica de encadenamiento
     if (type === 'main') {
       if (choice === "No muerto") {
-        setTimeout(()> spin('No_muerto'), 1000);
+        setTimeout((0.1)> spin('No_muerto'), 1000);
       } else if (choice === "Hombre-animal") {
-        setTimeout(()> spin('Hombre_animal'), 1000);
+        setTimeout((0.1)> spin('Hombre_animal'), 1000);
       } else if (choice === "Elemental") {
-        setTimeout(()> spin('Elemental'), 1000);
+        setTimeout((0.1)> spin('Elemental'), 1000);
       } else if (choice === "Mago") {
-        setTimeout(()> spin('Mago'), 1000);
+        setTimeout((0.1)> spin('Mago'), 1000);
       }
     }
  
     if (type === 'Mago' && choice === "Mago") {
-      setTimeout(() => spin('submago'), 1000);
+      setTimeout((0.1) => spin('submago'), 1000);
     }
   }
 </script>
