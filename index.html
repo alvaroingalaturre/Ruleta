@@ -7,16 +7,19 @@
   <title>Ruleta de Razas</title>
   <style>
     body { font-family:arial; text-align: center; padding: 30px; }
-    button { padding: 10px 20px; font-size: 18px; }
-    #result { margin-top: 20px; font-size: 24px; font-weight: bold; }
+    button { padding: 10px 20px; font-size: 18px; margin: 5px; }
+    #result, #subresult { margin-top: 20px; font-size: 24px; font-weight: bold; }
   </style>
 </head>
 <body>
- 
+
 <h1>Ruleta Principal</h1>
-<button onclick="spin('main')">Girar Ruleta</button>
+<button onclick="spin('main')">Girar Ruleta Principal</button>
 <div id="result"></div>
- 
+
+<div id="extraButtons" style="margin-top: 20px;"></div>
+<div id="subresult"></div>
+
 <script>
   const roulettes = {
     main: [
@@ -25,28 +28,18 @@
       "Hombre-animal", "Mago", "Ogro", "Troll", "Vampiro", "Troglodita", "Lich", "Leprechaun", "Gorgona",
       "Pixie", "Djinn/Jinn/Genio", "Elemental"
     ],
-    No_muerto: [
-        "Zombie", "Esqueleto", "Espíritu", "Ghoul"
-    ],
-    Hombre_animal: [
-      "Hombre lobo", "Hombre lagarto", "Hombre pez", "Harpía", "Tritón/Sirena", "Nekomimi",
-      "Minotauro", "Centauro", "Fauno", "Sátiro"
-    ],
-    Elemental: [
-      "Fuego", "Agua", "Viento", "Tierra", "Electricidad", "Hielo", "Planta", "Luz", "Oscuridad"
-    ],
+    No_muerto: ["Zombie", "Esqueleto", "Espíritu", "Ghoul"],
+    Hombre_animal: ["Hombre lobo", "Hombre lagarto", "Hombre pez", "Harpía", "Tritón/Sirena", "Nekomimi", "Minotauro", "Centauro", "Fauno", "Sátiro"],
+    Elemental: ["Fuego", "Agua", "Viento", "Tierra", "Electricidad", "Hielo", "Planta", "Luz", "Oscuridad"],
     Mago: ["Mago", "Brujo", "Hechicero", "Nigromante", "Chamán", "Clérigo"],
-    submago: [
-      "Piromante", "Hidromante", "Heliomamte", "Geomante", "Electromante",
-      "Criomante", "Herbomante", "Fotomante", "Nictomante"
-    ]
+    submago: ["Piromante", "Hidromante", "Heliomamte", "Geomante", "Electromante", "Criomante", "Herbomante", "Fotomante", "Nictomante"]
   };
- 
+
   function spin(type) {
     const options = roulettes[type];
     const choice = options[Math.floor(Math.random() * options.length)];
- 
-  if (type === 'main') {
+
+    if (type === 'main') {
       document.getElementById('result').innerText = `Principal: ${choice}`;
       document.getElementById('subresult').innerText = "";
       document.getElementById('extraButtons').innerHTML = ""; // Limpiar botones anteriores
@@ -80,6 +73,6 @@
     container.appendChild(btn);
   }
 </script>
- 
+
 </body>
 </html>
